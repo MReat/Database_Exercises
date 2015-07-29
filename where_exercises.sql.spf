@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>employees</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>name</key>
+			<string>codeup</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>ssh_host</key>
+			<string>127.0.0.1</string>
+			<key>ssh_keyLocation</key>
+			<string></string>
+			<key>ssh_keyLocationEnabled</key>
+			<integer>0</integer>
+			<key>ssh_port</key>
+			<integer>2222</integer>
+			<key>ssh_user</key>
+			<string>vagrant</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPSSHTunnelConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>codeup</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentFilter</key>
+			<dict/>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK8QDwcIFRYXGBkfICEoLDA0OFUkbnVs
+			bNMJCgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+A
+			AoADgASjERITgAWABoAKgA5UdHlwZVRyb3dzVGtleXNfECZTZWxl
+			Y3Rpb25EZXRhaWxUeXBlUHJpbWFyeUtleWVkRGV0YWlsc9MJCgsa
+			HB6hG4AHoR2ACIAJVjQ2MzgwNwnSIiMkJVokY2xhc3NuYW1lWCRj
+			bGFzc2VzXxATTlNNdXRhYmxlRGljdGlvbmFyeaMkJidcTlNEaWN0
+			aW9uYXJ5WE5TT2JqZWN00goLKSuhKoALgA3SCy0uL1lOUy5zdHJp
+			bmeADFZlbXBfbm/SIiMxMl8QD05TTXV0YWJsZVN0cmluZ6MxMydY
+			TlNTdHJpbmfSIiM1Nl5OU011dGFibGVBcnJheaM1NydXTlNBcnJh
+			edIiIyY5oiYnXxAPTlNLZXllZEFyY2hpdmVy0Tw9VGRhdGGAAQAI
+			ABEAGgAjAC0AMgA3AEkATwBWAF4AaQBwAHQAdgB4AHoAfgCAAIIA
+			hACGAIsAkACVAL4AxQDHAMkAywDNAM8A1gDXANwA5wDwAQYBCgEX
+			ASABJQEnASkBKwEwAToBPAFDAUgBWgFeAWcBbAF7AX8BhwGMAY8B
+			oQGkAakAAAAAAAACAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAABqw==
+			</data>
+			<key>contentSortCol</key>
+			<string>hire_date</string>
+			<key>contentSortColIsAsc</key>
+			<false/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {745, 481}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE (first_name LIKE 'Irena' 
+OR first_name LIKE 'Vidya' 
+OR first_name LIKE 'Maya')
+AND gender = 'M';
+
+SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE last_name LIKE 'E%'
+OR last_name LIKE '%e';
+
+SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE last_name LIKE 'E%'
+AND last_name LIKE '%e';
+
+SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+-- WHERE hire_date LIKE '199%';
+where hire_date BETWEEN '1990-01-01' AND '1999-12-31';
+
+SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+where birth_date LIKE '%12-25';
+
+SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+where last_name LIKE '%q%';</string>
+			<key>table</key>
+			<string>employees</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>202</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE last_name LIKE 'E%'
+OR last_name LIKE '%e'</string>
+		<string>%e</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE last_name LIKE 'E%e'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE (first_name LIKE 'Irena' 
+OR first_name LIKE 'Vidya' 
+OR first_name LIKE 'Maya')
+AND gender = 'M'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE first_name LIKE 'Irena' 
+OR first_name LIKE 'Vidya' 
+OR first_name LIKE 'Maya'
+AND gender = 'M'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE last_name LIKE 'E%'
+AND gender = 'M'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE (last_name LIKE 'E%'
+AND gender = 'M')</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE last_name LIKE 'E%'
+AND gender LIKE 'M'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE last_name LIKE 'E%'
+AND gender LIKE "M"</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE first_name LIKE 'Irena' 
+OR first_name LIKE 'Vidya' 
+OR first_name LIKE 'Maya'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE first_name IN 'Irena' 
+OR first_name IN 'Vidya' 
+OR first_name IN 'Maya'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+where birth_date LIKE '%12-25'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+where last_name LIKE '%q%'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+-- WHERE hire_date LIKE '199%';
+where hire_date BETWEEN '1990-01-01' AND '1999-12-31'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE hire_date LIKE '199%'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+-- WHERE hire_date IN ('%1990%', '%1991%','%1992%','%1993%','%1994%','%1995%','%1996%','%1997%','%1998%','%1999%');
+WHERE hire_date BETWEEN '1989%' AND '2000%'</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+-- WHERE hire_date IN ('%1990%', '%1991%','%1992%','%1993%','%1994%','%1995%','%1996%','%1997%','%1998%','%1999%');
+WHERE hire_date BETWEEN 1989 AND 2000</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE hire_date IN ('%1990%', '%1991%','%1992%','%1993%','%1994%','%1995%','%1996%','%1997%','%1998%','%1999%')</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE hire_date LIKE ('%1990%', '%1991%','%1992%','%1993%','%1994%','%1995%','%1996%','%1997%','%1998%','%1999%')</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE hire_date IN ('1990%', '1991%','1992%','1993%','1994%','1995%','1996%','1997%','1998%','1999%')</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.5.43-0ubuntu0.14.04.1-log</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
