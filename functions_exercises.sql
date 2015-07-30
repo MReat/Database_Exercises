@@ -17,12 +17,13 @@ FROM employees
 WHERE last_name LIKE 'E%'
 AND last_name LIKE '%e';
 
-SELECT first_name, last_name, datediff(now(), hire_date)  
+SELECT first_name, last_name, datediff(now(), hire_date) AS days_with_us 
 FROM employees
 -- WHERE hire_date LIKE '199%';
 WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
 AND birth_date LIKE '%12-25'
-ORDER BY birth_date ASC, hire_date DESC;
+-- ORDER BY birth_date ASC, hire_date DESC;
+ORDER BY days_with_us DESC;
 
 SELECT concat(first_name, ' ', last_name) AS full_name
 FROM employees
