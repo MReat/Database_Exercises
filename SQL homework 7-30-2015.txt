@@ -38,9 +38,9 @@
 	    Manager            | 77723.6667
 	    Senior Staff       | 80706.4959
 
-	5. 	Select every employee's first and last name, department name, and the 
-		first and last name of their manager. Sort by departemnt name, 
-		employee last name, employee first name.
+	5. 	Select every employee's first and last name, department name, and the first and last name of their manager. 
+	
+		Sort by departemnt name, employee last name, employee first name.
 		240,124 rows
 
 	*. Find the current titles and employees currently working in the Customer Service department.
