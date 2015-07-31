@@ -21,7 +21,7 @@ AND t.title = 'Manager'
 AND e.gender = 'F';
 
 
-SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name', s.salary, e.emp_no
+SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name', s.salary
 FROM employees e
 LEFT JOIN titles t
 ON e.emp_no = t.emp_no
@@ -45,6 +45,7 @@ AND s.to_date = '9999-01-01'
 AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
 GROUP BY t.title;
 
+
 SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', 
 concat(em.first_name, ' ', em.last_name) 'Manager Name'
 FROM employees e
@@ -59,3 +60,4 @@ ON dm.emp_no = em.emp_no
 WHERE de.to_date = '9999-01-01'
 AND  dm.to_date = '9999-01-01'
 ORDER BY d.dept_name, e.last_name, e.first_name;
+

@@ -59,21 +59,21 @@
 			<integer>1</integer>
 			<key>contentSelection</key>
 			<data>
-			YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFy
-			Y2hpdmVyVCR0b3ASAAGGoK4HCBUWFxgZHSQpLTE0OFUkbnVsbNMJ
-			CgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+AAoAD
-			gASjERITgAWABoAIgA1UdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rp
-			b25EZXRhaWxUeXBlUHJpbWFyeUtleWVkRGV0YWlsc9MJCgsaGxyg
-			oIAH0h4fICFaJGNsYXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJs
-			ZURpY3Rpb25hcnmjICIjXE5TRGljdGlvbmFyeVhOU09iamVjdNIK
-			CyUooiYngAmAC4AM0gsqKyxZTlMuc3RyaW5ngApWZW1wX25v0h4f
-			Li9fEA9OU011dGFibGVTdHJpbmejLjAjWE5TU3RyaW5n0gsqKzOA
-			CldkZXB0X25v0h4fNTZeTlNNdXRhYmxlQXJyYXmjNTcjV05TQXJy
-			YXnSHh8iOaIiI18QD05TS2V5ZWRBcmNoaXZlctE8PVRkYXRhgAEA
-			CAARABoAIwAtADIANwBGAEwAUwBbAGYAbQBxAHMAdQB3AHsAfQB/
-			AIEAgwCIAI0AkgC7AMIAwwDEAMYAywDWAN8A9QD5AQYBDwEUARcB
-			GQEbAR0BIgEsAS4BNQE6AUwBUAFZAV4BYAFoAW0BfAGAAYgBjQGQ
-			AaIBpQGqAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAaw=
+			YnBsaXN0MDDUAQIDBAUGNjdYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK0HCBUWFxgZHSQoLDA0VSRudWxs0wkK
+			CwwQFFdOUy5rZXlzWk5TLm9iamVjdHNWJGNsYXNzow0OD4ACgAOA
+			BKMREhOABYAGgAiADFR0eXBlVHJvd3NUa2V5c18QJlNlbGVjdGlv
+			bkRldGFpbFR5cGVQcmltYXJ5S2V5ZWREZXRhaWxz0wkKCxobHKCg
+			gAfSHh8gIVokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxl
+			RGljdGlvbmFyeaMgIiNcTlNEaWN0aW9uYXJ5WE5TT2JqZWN00goL
+			JSehJoAJgAvSCykqK1lOUy5zdHJpbmeACldkZXB0X25v0h4fLS5f
+			EA9OU011dGFibGVTdHJpbmejLS8jWE5TU3RyaW5n0h4fMTJeTlNN
+			dXRhYmxlQXJyYXmjMTMjV05TQXJyYXnSHh8iNaIiI18QD05TS2V5
+			ZWRBcmNoaXZlctE4OVRkYXRhgAEACAARABoAIwAtADIANwBFAEsA
+			UgBaAGUAbABwAHIAdAB2AHoAfAB+AIAAggCHAIwAkQC6AMEAwgDD
+			AMUAygDVAN4A9AD4AQUBDgETARUBFwEZAR4BKAEqATIBNwFJAU0B
+			VgFbAWoBbgF2AXsBfgGQAZMBmAAAAAAAAAIBAAAAAAAAADoAAAAA
+			AAAAAAAAAAAAAAGa
 			</data>
 			<key>contentSortColIsAsc</key>
 			<true/>
@@ -86,12 +86,10 @@
 FROM employees e
 LEFT JOIN titles t 
 ON e.emp_no = t.emp_no
-LEFT JOIN dept_emp de
-ON de.emp_no = e.emp_no
 WHERE t.title LIKE 'senior %'
-AND t.to_date = '9999-01-01'
-/* total 185,622 without group by */
-GROUP BY full_name;
+AND t.to_date = '9999-01-01';
+/* total 161,373 with group by */
+-- GROUP BY full_name;
 
 SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name'
 FROM employees e
@@ -107,7 +105,7 @@ AND t.title = 'Manager'
 AND e.gender = 'F';
 
 
-SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name', s.salary, e.emp_no
+SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name', s.salary
 FROM employees e
 LEFT JOIN titles t
 ON e.emp_no = t.emp_no
@@ -129,7 +127,9 @@ ON s.emp_no = t.emp_no
 WHERE t.to_date = '9999-01-01'  
 AND s.to_date = '9999-01-01'
 AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
-GROUP BY t.title;
+GROUP BY t.title
+ORDER BY s.salary;
+
 
 SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', 
 concat(em.first_name, ' ', em.last_name) 'Manager Name'
@@ -137,17 +137,18 @@ FROM employees e
 LEFT JOIN dept_emp de
 ON e.emp_no = de.emp_no
 LEFT JOIN departments d
-ON d.dept_no = de.dept_no
+ON de.dept_no = d.dept_no
 LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
+ON d.dept_no = dm.dept_no
 LEFT JOIN employees em
 ON dm.emp_no = em.emp_no
 WHERE de.to_date = '9999-01-01'
-/* AND  dm.to_date = '9999-01-01' */
+AND  dm.to_date = '9999-01-01'
 ORDER BY d.dept_name, e.last_name, e.first_name;
+
 </string>
 			<key>table</key>
-			<string>dept_emp</string>
+			<string>departments</string>
 			<key>view</key>
 			<string>SP_VIEW_CUSTOMQUERY</string>
 			<key>windowVerticalDividerPosition</key>
@@ -162,192 +163,25 @@ ORDER BY d.dept_name, e.last_name, e.first_name;
 	<array/>
 	<key>queryHistory</key>
 	<array>
+		<string>SELECT concat(e.first_name, ' ', last_name) full_name, t.title, t.to_date
+FROM employees e
+LEFT JOIN titles t 
+ON e.emp_no = t.emp_no
+WHERE t.title LIKE 'senior %'
+AND t.to_date = '9999-01-01'</string>
 		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', 
 concat(em.first_name, ' ', em.last_name) 'Manager Name'
 FROM employees e
 LEFT JOIN dept_emp de
 ON e.emp_no = de.emp_no
 LEFT JOIN departments d
-ON d.dept_no = de.dept_no
+ON de.dept_no = d.dept_no
 LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
+ON d.dept_no = dm.dept_no
 LEFT JOIN employees em
 ON dm.emp_no = em.emp_no
 WHERE de.to_date = '9999-01-01'
-/* AND  dm.to_date = '9999-01-01' */
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', 
-concat(em.first_name, ' ' em.last_name) 'Manager Name'
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
-LEFT JOIN employees em
-ON dm.emp_no = em.emp_no
-WHERE de.to_date = '9999-01-01'
-/* AND  dm.to_date = '9999-01-01' */
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', dm.emp_no "Manager Name"
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-/* AND  dm.to_date = '9999-01-01' */
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', dm.emp_no "Manager Name"
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no AS 
-WHERE de.to_date = '9999-01-01'
-/* AND  dm.to_date = '9999-01-01' */
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name'/* ,  "Manager Name" */
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no AS 'Manager Name'
-WHERE de.to_date = '9999-01-01'
-/* AND  dm.to_date = '9999-01-01' */
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name'/* ,  "Manager Name" */
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no 'Manager Name'
-WHERE de.to_date = '9999-01-01'
-/* AND  dm.to_date = '9999-01-01' */
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name'/* ,  "Manager Name" */
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-/* AND  dm.to_date = '9999-01-01' */
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name'/* ,  "Manager Name" */
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-
-WHERE de.to_date = '9999-01-01'
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
 AND  dm.to_date = '9999-01-01'
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name'/* ,  "Manager Name" */
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-AND dm.to_date = '9999-01-01'
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name'/* ,  "Manager Name" */
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-WHERE dm.to_date = '9999-01-01'
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name'/* ,  "Manager Name" */
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name',  "Manager Name"
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', dm.emp_no "Manager Name"
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', concat(e.first_name, ' ', e.last_name) "Manager Name"
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', concat(e.first_name, ' ', e.last_name) "Manager Name"
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', concat(e.dm.first_name, ' ', e.dm.last_name) "Manager Name"
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
-ORDER BY d.dept_name, e.last_name, e.first_name</string>
-		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', concat(dm.first_name, ' ', dm.last_name) "Manager Name"
-FROM employees e
-LEFT JOIN dept_emp de
-ON e.emp_no = de.emp_no
-LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-LEFT JOIN dept_manager dm
-ON dm.emp_no_no = e.emp_no
-WHERE de.to_date = '9999-01-01'
 ORDER BY d.dept_name, e.last_name, e.first_name</string>
 		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
 FROM salaries s
@@ -356,7 +190,106 @@ ON s.emp_no = t.emp_no
 WHERE t.to_date = '9999-01-01'  
 AND s.to_date = '9999-01-01'
 AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+GROUP BY t.title
+ORDER BY s.salary asc</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+GROUP BY t.title
+ORDER BY s.salary ask</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+GROUP BY t.title
+ORDER BY s.salary</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+GROUP BY t.title
+ORDER BY s.salary desc</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
 GROUP BY t.title</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')</string>
+		<string>SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name', s.salary
+FROM employees e
+LEFT JOIN titles t
+ON e.emp_no = t.emp_no
+LEFT JOIN dept_emp de
+ON e.emp_no = de.emp_no
+LEFT JOIN departments d
+ON d.dept_no = de.dept_no
+LEFT JOIN salaries s
+ON e.emp_no = s.emp_no
+WHERE t.title = 'Manager'  
+AND s.to_date = '9999-01-01'
+AND t.to_date = '9999-01-01'
+GROUP BY d.dept_name</string>
+		<string>/* total 161,373 with group by */
+-- GROUP BY full_name;
+
+SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name'
+FROM employees e
+LEFT JOIN titles t
+ON e.emp_no = t.emp_no
+LEFT JOIN dept_emp de
+ON e.emp_no = de.emp_no
+LEFT JOIN departments d
+ON d.dept_no = de.dept_no
+WHERE d.dept_name IN ('Development', 'Finance', 'Human Resources', 'Research')
+AND t.to_date = '9999-01-01' 
+AND t.title = 'Manager'
+AND e.gender = 'F'</string>
+		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', 
+concat(em.first_name, ' ', em.last_name) 'Manager Name'
+FROM employees e
+LEFT JOIN dept_emp de
+ON e.emp_no = de.emp_no
+LEFT JOIN departments d
+ON de.dept_no = d.dept_no
+LEFT JOIN dept_manager dm
+ON d.dept_no = dm.dept_no
+LEFT JOIN employees em
+ON dm.emp_no = em.emp_no
+WHERE de.to_date = '9999-01-01'
+AND  dm.to_date = '9999-01-01'</string>
+		<string>SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name', s.salary,
+FROM employees e
+LEFT JOIN titles t
+ON e.emp_no = t.emp_no
+LEFT JOIN dept_emp de
+ON e.emp_no = de.emp_no
+LEFT JOIN departments d
+ON d.dept_no = de.dept_no
+LEFT JOIN salaries s
+ON e.emp_no = s.emp_no
+WHERE t.title = 'Manager'  
+AND s.to_date = '9999-01-01'
+AND t.to_date = '9999-01-01'
+GROUP BY d.dept_name</string>
 		<string>SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name', s.salary, e.emp_no
 FROM employees e
 LEFT JOIN titles t
@@ -371,18 +304,68 @@ WHERE t.title = 'Manager'
 AND s.to_date = '9999-01-01'
 AND t.to_date = '9999-01-01'
 GROUP BY d.dept_name</string>
-		<string>SELECT d.dept_name 'Department Name', concat(first_name, ' ', last_name) 'Manager Name'
-FROM employees e
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
 LEFT JOIN titles t
-ON e.emp_no = t.emp_no
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+GROUP BY 't.title'</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+ORDER BY 't.title'</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+ORDER BY 's.salary'</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+GROUP BY 's.salary'</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+ORDER BY 'Average Salary'</string>
+		<string>SELECT t.title Title, AVG(s.salary) 'Average Salary'
+FROM salaries s
+LEFT JOIN titles t
+ON s.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'  
+AND s.to_date = '9999-01-01'
+AND t.title IN ('Assistant Engineer', 'Engineer', 'Staff', 'Technique Leader', 'Senior Engineer', 'Manager', 'Senior Staff')
+GROUP BY 'Average Salary'</string>
+		<string>SELECT concat(e.first_name, ' ', e.last_name) 'Employee Name', d.dept_name 'Department Name', 
+concat(em.first_name, ' ', em.last_name) 'Manager Name'
+FROM employees e
 LEFT JOIN dept_emp de
 ON e.emp_no = de.emp_no
 LEFT JOIN departments d
-ON d.dept_no = de.dept_no
-WHERE d.dept_name IN ('Development', 'Finance', 'Human Resources', 'Research')
-AND t.to_date = '9999-01-01' 
-AND t.title = 'Manager'
-AND e.gender = 'F'</string>
+ON de.dept_no = d.dept_no
+LEFT JOIN dept_manager dm
+ON d.dept_no = dm.dept_no
+LEFT JOIN employees em
+ON dm.emp_no = em.emp_no
+WHERE de.to_date = '9999-01-01'
+/* AND  dm.to_date = '9999-01-01' */
+ORDER BY d.dept_name, e.last_name, e.first_name</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>
