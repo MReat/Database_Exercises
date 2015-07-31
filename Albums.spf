@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>codeup_test_db</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>4426612833827060336</string>
+			<key>name</key>
+			<string>Codeup</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>ssh_host</key>
+			<string>127.0.0.1</string>
+			<key>ssh_keyLocation</key>
+			<string></string>
+			<key>ssh_keyLocationEnabled</key>
+			<integer>0</integer>
+			<key>ssh_port</key>
+			<integer>2222</integer>
+			<key>ssh_user</key>
+			<string>vagrant</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPSSHTunnelConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>codeup</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGNjdYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK0HCBUWFxgZHSQoLDA0VSRudWxs0wkK
+			CwwQFFdOUy5rZXlzWk5TLm9iamVjdHNWJGNsYXNzow0OD4ACgAOA
+			BKMREhOABYAGgAiADFR0eXBlVHJvd3NUa2V5c18QJlNlbGVjdGlv
+			bkRldGFpbFR5cGVQcmltYXJ5S2V5ZWREZXRhaWxz0wkKCxobHKCg
+			gAfSHh8gIVokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxl
+			RGljdGlvbmFyeaMgIiNcTlNEaWN0aW9uYXJ5WE5TT2JqZWN00goL
+			JSehJoAJgAvSCykqK1lOUy5zdHJpbmeAClJpZNIeHy0uXxAPTlNN
+			dXRhYmxlU3RyaW5noy0vI1hOU1N0cmluZ9IeHzEyXk5TTXV0YWJs
+			ZUFycmF5ozEzI1dOU0FycmF50h4fIjWiIiNfEA9OU0tleWVkQXJj
+			aGl2ZXLRODlUZGF0YYABAAgAEQAaACMALQAyADcARQBLAFIAWgBl
+			AGwAcAByAHQAdgB6AHwAfgCAAIIAhwCMAJEAugDBAMIAwwDFAMoA
+			1QDeAPQA+AEFAQ4BEwEVARcBGQEeASgBKgEtATIBRAFIAVEBVgFl
+			AWkBcQF2AXkBiwGOAZMAAAAAAAACAQAAAAAAAAA6AAAAAAAAAAAA
+			AAAAAAABlQ==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1052, 522}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>SELECT *
+FROM albums;</string>
+			<key>table</key>
+			<string>albums</string>
+			<key>view</key>
+			<string>SP_VIEW_STRUCTURE</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>203</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>SELECT *
+FROM albums</string>
+		<string>EXPLAIN SELECT *
+FROM deptartments</string>
+		<string>EXPLAIN SELECT *
+FROM dept_manager</string>
+		<string>EXPLAIN SELECT *
+FROM dept_emp</string>
+		<string>EXPLAIN SELECT *
+FROM departments</string>
+		<string>EXPLAIN SELECT *
+FROM departments
+WHERE last_name LIKE 'A%'</string>
+		<string>explain SELECT *
+FROM employees
+WHERE last_name LIKE 'A%'</string>
+		<string>describe SELECT *
+FROM employees
+WHERE last_name LIKE 'A%'</string>
+		<string>SELECT *
+FROM employees
+WHERE last_name LIKE 'A%'</string>
+		<string>SELECT *
+FROM employees
+WHERE last_name 'A%'</string>
+		<string>SELECT *
+FROM employees
+WHERE last_name "A%"</string>
+		<string>SELECT concat(emp_no, ' - ', last_name, ', ', first_name) AS full_name, birth_date AS DOB
+FROM employees
+LIMIT 10</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name, birth_date AS DOB
+FROM employees
+LIMIT 10</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name, count(*)
+FROM employees
+WHERE last_name LIKE '%q%'
+AND last_name NOT LIKE '%qu%'
+GROUP BY full_name
+ORDER BY count(*) DESC</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE last_name LIKE 'E%'
+AND last_name LIKE '%e'</string>
+		<string>SELECT first_name, last_name, datediff(now(), hire_date) AS days_with_us 
+FROM employees
+-- WHERE hire_date LIKE '199%';
+WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
+AND birth_date LIKE '%12-25'
+-- ORDER BY birth_date ASC, hire_date DESC;
+ORDER BY days_with_us DESC</string>
+		<string>SELECT first_name, last_name, datediff(now(), hire_date) AS days_with_us 
+FROM employees
+-- WHERE hire_date LIKE '199%';
+WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
+AND birth_date LIKE '%12-25'
+-- ORDER BY birth_date ASC, hire_date DESC;
+ORDER BY days_with_us</string>
+		<string>SELECT first_name, last_name, datediff(now(), hire_date)  
+FROM employees
+-- WHERE hire_date LIKE '199%';
+WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
+AND birth_date LIKE '%12-25'
+ORDER BY birth_date ASC, hire_date DESC</string>
+		<string>SELECT count(*), gender
+FROM employees
+WHERE (first_name LIKE 'Irena' 
+OR first_name LIKE 'Vidya' 
+OR first_name LIKE 'Maya')
+GROUP BY gender</string>
+		<string>SELECT concat(first_name, ' ', last_name) AS full_name, count(*)
+FROM employees
+WHERE last_name LIKE '%q%'
+AND last_name NOT LIKE '%qu%'
+-- GROUP BY full_name
+ORDER BY count(*) DESC</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.5.43-0ubuntu0.14.04.1-log</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

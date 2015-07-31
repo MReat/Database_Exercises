@@ -1,0 +1,46 @@
+	1.	The name and title of all employees who's title starts with "Senior"
+		167,963 rows
+
+	2.  Department and manager name where the manager is female
+		4; Development, Finance, HR, Research
+		
+		Department Name | Manager Name
+	    ----------------+-----------------
+	    Development     | Leon DasSarma
+	    Finance         | Isamu Legleitner
+	    Human Resources | Karsetn Sigstam
+	    Research        | Hilary Kambil
+
+	3.  Current salaries for all managers
+
+		Department Name    | Name              | Salary
+	    -------------------+-------------------+-------
+	    Customer Service   | Yuchang Weedman   |  58745
+	    Development        | Leon DasSarma     |  74510
+	    Finance            | Isamu Legleitner  |  83457
+	    Human Resources    | Karsten Sigstam   |  65400
+	    Marketing          | Vishwani Minakawa | 106491
+	    Production         | Oscar Ghazalie    |  56654
+	    Quality Management | Dung Pesch        |  72876
+	    Research           | Hilary Kambil     |  79393
+	    Sales              | Hauke Zhang       | 101987
+
+	4.	Current average salary of each title
+		Min: Assistant Engineer - 57317.5736, Max: Senior Staff - 80706.4959
+
+		Title              | Average Salary
+	    -------------------+---------------
+	    Assistant Engineer | 57317.5736
+	    Engineer           | 59602.7378
+	    Staff              | 67330.6652
+	    Technique Leader   | 67506.5903
+	    Senior Engineer    | 70823.4376
+	    Manager            | 77723.6667
+	    Senior Staff       | 80706.4959
+
+	5. 	Select every employee's first and last name, department name, and the 
+		first and last name of their manager. Sort by departemnt name, 
+		employee last name, employee first name.
+		240,124 rows
+
+	*. Find the current titles and employees currently working in the Customer Service department.
